@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <!-- Profile Section -->
+  <div class="d-flex align-items-center mb-4 p-3 border rounded shadow-sm bg-light">
+    <img
+      [src]="user.avatarUrl || 'assets/default-avatar.png'"
+      alt="Avatar"
+      class="rounded-circle me-3"
+      width="80"
+      height="80"
+      style="object-fit: cover;"
+    />
+    <div>
+      <h4 class="mb-1">{{ user.fullName }}</h4>
+      <p class="text-muted mb-0">{{ user.bio }}</p>
+    </div>
+  </div>
+
+  <!-- Questions List -->
+  <h5 class="mb-3">Questions Posted</h5>
+
+  <div
+    class="mb-4 p-3 border rounded shadow-sm position-relative"
+    *ngFor="let question of questions"
+    style="cursor: pointer; text-decoration: none; color: inherit;"
+    [routerLink]="['/dashboard/questionList/details', question.id]"
+  >
+    <h6 class="fw-bold">{{ question.title }}</h6>
+    <p>{{ question.body }}</p>
+
+    <!-- Tags -->
+    <div class="mb-2">
+      <span *ngFor="let tag of question.tags" class="badge bg-secondary me-1">
+        {{ tag.tagName }}
+      </span>
+    </div>
+
+    <!-- Delete button -->
+    <button
+      *ngIf="userid === question.appUserId"
+      class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2"
+      (click)="deleteQuestion(question.id); $event.stopPropagation();"
+    >
+      Delete
+    </button>
+  </div>
+</div>

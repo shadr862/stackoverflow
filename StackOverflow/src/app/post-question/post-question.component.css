@@ -1,0 +1,16 @@
+.badge {
+  position: relative;
+  padding-right: 2rem; /* Add right padding so text doesn't get covered */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.badge .btn-close {
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}

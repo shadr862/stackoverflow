@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h4 class="mb-4">Answers</h4>
+
+  <div *ngIf="(answers?.length || 0) > 0; else noAnswers">
+    <div *ngFor="let answer of answers" class="mb-4 p-3 border rounded shadow-sm position-relative">
+      <!-- Answer Author -->
+      <div class="fw-bold">
+        {{ answer.name || 'Anonymous' }}
+
+        <!-- Show Blue Tick if Accepted -->
+        <span *ngIf="question.acceptedAnswerId === answer.id" class="text-primary ms-2" title="Accepted Answer">
+          ✔️
+        </span>
+      </div>
+
+      <!-- Created Date -->
+      <div class="text-muted small mb-2">
+        {{ answer.created | date:'medium':'UTC+6' }}
+      </div>
+
+      <!-- Top-right action buttons -->
+      <div *ngIf="answer.appUserId === userId" class="position-absolute top-0 end-0 p-2">
+        <button class="btn btn-sm btn-outline-primary me-1" title="Edit" [routerLink]="['/dashboard/edit-answer', postId, answer.id]">
+          ✏️
+        </button>
+        <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="deleteAnswer(answer.id)">
+          🗑️
+        </button>
+      </div>
+
+
+      <!-- Answer Text -->
+      <p class="mb-2" style="white-space: pre-line;">{{ answer.answerText }}</p>
+
+      <!-- Buttons aligned bottom-right -->
+      <div class="d-flex justify-content-end mt-3">
+        <!-- Accept Button (only if not accepted) -->
+        <button *ngIf="question.acceptedAnswerId !== answer.id && question.appUserId === userId"
+          class="btn btn-outline-success btn-sm" (click)="acceptAnswer(answer.id)">
+          Accept Answer
+        </button>
+
+        <!-- Unaccept Button (only if accepted by question owner) -->
+        <button *ngIf="question.acceptedAnswerId === answer.id && question.appUserId === userId"
+          class="btn btn-link btn-sm text-danger ms-2 p-0" (click)="acceptAnswer('')">
+          Unaccept
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #noAnswers>
+    <p class="text-muted">No answers available.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  
+  <div class="mb-4 p-3 border rounded shadow-sm position-relative" *ngFor="let question of questions.items"
+    style="cursor: pointer; text-decoration: none; color: inherit;"
+    [routerLink]="['/dashboard/questionList/details', question.id]">
+    <h5 class="fw-bold">{{ question.title }}</h5>
+    <p>{{ question.body }}</p>
+
+    <div>
+      <span *ngFor="let tag of question.tags" class="badge bg-secondary me-1">
+        {{ tag.tagName }}
+      </span>
+    </div>
+
+    <div *ngIf="userid === question.appUserId" class="position-absolute top-0 end-0 m-2 d-flex gap-2">
+  <button 
+    class="btn btn-sm btn-secondary"
+    [routerLink]="['/dashboard/questionList/edit', question.id]"
+    (click)="$event.stopPropagation()"
+  >
+    Edit
+  </button>
+  <button 
+    class="btn btn-sm btn-danger"
+    (click)="deleteQuestion(question.id); $event.stopPropagation();"
+  >
+    Delete
+  </button>
+</div>
+
+
+  </div>
+</div>

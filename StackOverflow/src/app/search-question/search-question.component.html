@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Questions</h3>
+ 
+  <div
+    class="mb-4 p-3 border rounded shadow-sm position-relative"
+    *ngFor="let question of questions"
+    style="cursor: pointer; text-decoration: none; color: inherit;"
+    [routerLink]="['/dashboard/questionList/details', question.id]"
+  >
+    <h5 class="fw-bold">{{ question.title }}</h5>
+    <p>{{ question.body }}</p>
+
+    <div>
+      <span
+        *ngFor="let tag of question.tags"
+        class="badge bg-secondary me-1"
+      >
+        {{ tag.tagName }}
+      </span>
+    </div>
+
+    <!-- Delete button -->
+    <button *ngIf="userid===question.appUserId"
+      class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2"
+      (click)="deleteQuestion(question.id); $event.stopPropagation();"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+
+

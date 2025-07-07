@@ -1,0 +1,31 @@
+<div class="parent">
+  <div class="wrapper">
+    <form>
+      <h1>Login</h1>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+      <!-- Username -->
+      <div class="input-box">
+        <input type="text" name="EmailId" [(ngModel)]="loginObj.EmailId" placeholder="Username" required />
+        <i class="bx bxs-user"></i>
+      </div>
+
+      <!-- Password -->
+      <div class="input-box">
+        <input [type]="showPassword ? 'text' : 'password'" name="Password" [(ngModel)]="loginObj.Password"
+          placeholder="Password" required />
+        <i class="bx" [ngClass]="showPassword ? 'bx-show' : 'bx-hide'" (click)="togglePasswordVisibility()"
+          style="cursor: pointer;"></i>
+      </div>
+
+      <!-- Login Button -->
+      <button type="button" class="btn" (click)="login()">Login</button>
+
+      <!-- Forgot Password & Sign Up Links -->
+      <div class="links-container">
+        <a href="/signup">Sign Up</a>
+      </div>
+    </form>
+  </div>
+</div>

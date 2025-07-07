@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Post Your Answer</h3>
+
+  <form [formGroup]="answerForm" (ngSubmit)="onSubmit()">
+    <!-- Answer Text -->
+    <div class="mb-3">
+      <label for="answerText" class="form-label">Your Answer</label>
+      <textarea
+        id="answerText"
+        formControlName="answerText"
+        class="form-control"
+        rows="6"
+        placeholder="Write your answer here..."
+      ></textarea>
+      <div class="text-danger" *ngIf="answerForm.get('answerText')?.invalid && answerForm.get('answerText')?.touched">
+        Answer is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="answerForm.invalid">
+      Submit Answer
+    </button>
+  </form>
+</div>
+
