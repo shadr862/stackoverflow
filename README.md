@@ -12,7 +12,7 @@ A fully functional Q&A platform inspired by Stack Overflow, developed using Angu
 
 ## 📸 Project Preview
 
-![Q&A Preview](https://raw.githubusercontent.com/shadr862/stackoverflow/main/images/question_view.PNG)
+![Q&A Preview](https://github.com/shadr862/stackoverflow/blob/main/images/stackclone.PNG)
 
 > Replace the link with your own preview screenshot.
 
