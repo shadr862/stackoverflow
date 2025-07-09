@@ -53,22 +53,22 @@ A full-featured Q&A system inspired by Stack Overflow, built with Angular (front
 
 > *(Replace image URLs with your actual screenshots)*
  **. Dashboard View**
-![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/dashboard.png)
+![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/dashboard.PNG)
 
 **. Create Question View**
-![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/question.png)
+![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/question.PNG)
 
 **. Detail Question**
-![Voting](https://github.com/shadr862/stackoverflow/blob/main/images/detail_question.png)
+![Voting](https://github.com/shadr862/stackoverflow/blob/main/images/detail_question.PNG)
 
 **. Comments**
-![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/comment.png)
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/comment.PNG)
 
 **.Post Answers**
-![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/post_answer.png)
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/post_answer.PNG)
 
 **.View Answers**
-![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/all_answer.png)
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/all_answer.PNG)
 
 ---
 
