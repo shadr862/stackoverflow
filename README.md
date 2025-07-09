@@ -1,66 +1,85 @@
+# 💬 Stack Overflow Clone – Q&A Platform
+
+A full-featured Q&A system inspired by Stack Overflow, built with Angular (frontend) and ASP.NET Core using the ABP Framework (backend). This platform allows users to ask and answer questions, vote, comment, and organize content with tags — all within a modular and scalable architecture.
 
 ---
 
-## 💬 Stack Overflow Clone – `README.md`
+## 🚀 Features
 
-```markdown
-# 💬 Stack Overflow Clone (Q&A System)
-
-A fully functional Q&A platform inspired by Stack Overflow, developed using Angular and ASP.NET Core (ABP Framework). It allows users to ask questions, post answers, vote, comment, and tag content.
-
----
-
-## 📸 Project Preview
-
-![Q&A Preview](https://raw.githubusercontent.com/shadr862/stackoverflow/main/images/question_view.PNG)
-
-> Replace the link with your own preview screenshot.
+- ✅ **Ask & Answer Questions** – Users can post questions and answers with full markdown support.
+- ✅ **Commenting System** – Add and view comments on both questions and answers.
+- ✅ **Voting Mechanism** – Upvote or unvote content to reflect user support.
+- ✅ **Accepted Answer** – Question owners can mark an answer as accepted.
+- ✅ **Tagging System** – Multi-select tag input with real-time search.
+- ✅ **Search & Filter** – Filter questions by tags and search through content.
+- ✅ **User Profiles** – Display user-related activity and contribution.
+- ✅ **Responsive UI** – Clean and mobile-friendly Angular components.
 
 ---
 
-## 🔧 Features
+## 🧱 Technical Overview
 
-### 🧑‍💻 Q&A Module
-- Ask questions and answer others
-- Accept answers to mark resolution
-- Tag-based filtering for easy navigation
+### 🔹 Frontend
+- **Framework**: Angular 17
+- **Language**: TypeScript
+- **Features**:
+  - Tag-based filtering UI
+  - Reusable components (questions, answers, tags, comments)
+  - Reactive forms for submission and editing
+  - Real-time tag search and dropdown selection
 
-### 📊 Voting System
-- Upvote and unvote both questions and answers
-- Vote counts reflect user community support
-
-### 🏷️ Tagging
-- Add tags when asking a question
-- Browse questions by tag
-- Multi-select dropdown with search
-
-### 💬 Comments
-- Add comments to questions and answers
-- Nested comment threads for discussion
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend**: Angular, TypeScript
-- **Backend**: ASP.NET Core, ABP Framework
-- **Database**: SQL Server
-- **Authentication**: JWT-based login
+### 🔹 Backend
+- **Framework**: ASP.NET Core with ABP Framework
+- **Language**: C#
+- **Architecture**: Modular, layered clean architecture
+- **Key Features**:
+  - Self-referencing posts for Q&A structure
+  - Many-to-many relationships for tags
+  - One-to-many relationships for comments and votes
+  - Secure APIs with JWT Authentication
 
 ---
 
-## 📂 Folder Structure
+## 🧩 Database Design
 
-- `api/` – Backend built with ASP.NET Core & ABP
-- `angular/` – Angular frontend
+- `Post` (Questions & Answers) – self-referencing
+- `Tag` – many-to-many with posts
+- `Comment` – one-to-many from posts
+- `Vote` – one-to-many with posts
+- `User` – related to all user-generated content
 
 ---
 
-## 🚀 Getting Started
+## 📷 UI Screenshots
 
-> Requirements: Node.js, Angular CLI, .NET SDK, SQL Server
+> *(Replace image URLs with your actual screenshots)*
 
-### 1. Clone the Repository
+**1. Question View**
+![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/qa_module.png)
+
+**2. Voting System**
+![Voting](https://github.com/shadr862/stackoverflow/blob/main/images/voting_system.png)
+
+**3. Tag Filtering**
+![Tag Filtering](https://github.com/shadr862/stackoverflow/blob/main/images/tagging.png)
+
+**4. Comments**
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/comments.png)
+
+---
+
+## 🛠️ Getting Started
+
+### ⚙️ Prerequisites
+
+- .NET SDK 6+
+- Node.js and Angular CLI
+- SQL Server
+
+### 🔧 Backend Setup
+
 ```bash
-git clone https://github.com/shadr862/stackoverflow.git
-cd stackoverflow
+cd api/
+dotnet restore
+dotnet ef database update
+dotnet run
