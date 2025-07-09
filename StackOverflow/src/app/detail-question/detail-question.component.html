@@ -37,7 +37,7 @@
 
     <!-- Metadata -->
     <div class="text-muted small mb-4">
-      Asked by {{ question.name || 'Unknown' }} on {{ question.created |date: 'medium' : 'Asia/Dhaka' }}
+      Asked by {{ question.name || 'Unknown' }} on {{ question.created | date:'medium':'UTC+6'  }}
 
     </div>
 
@@ -50,7 +50,7 @@
         <div *ngFor="let comment of comments" class="mb-3 border-bottom pb-2 d-flex justify-content-between">
           <div>
             <div class="fw-bold">{{ comment.name || 'Anonymous' }}</div>
-            <div class="text-muted small">{{ comment.created | date: 'medium' : 'Asia/Dhaka' }}</div>
+            <div class="text-muted small">{{ comment.created | date:'medium':'UTC+6'  }}</div>
             <p>{{ comment.commentText }}</p>
           </div>
           <button *ngIf="comment.appUserId==userId" class="btn btn-sm btn-outline-danger h-50"

@@ -1,41 +1,62 @@
-<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="position-relative" style="max-width: 600px;">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="position-relative w-100" style="max-width: 600px;">
 
+    <!-- Heading -->
+    <h2 class="text-center mb-4">📝 Post a Question</h2>
 
-  <div class="mb-3">
-    <label>Title (for questions)</label>
-    <input class="form-control" formControlName="title" />
-  </div>
+    <div class="mb-3">
+      <label>Title (for questions)</label>
+      <input class="form-control" formControlName="title" />
+    </div>
 
-  <div class="mb-3">
-    <label>Body</label>
-    <textarea class="form-control" formControlName="body"></textarea>
-  </div>
+    <div class="mb-3">
+      <label>Body</label>
+      <textarea class="form-control" formControlName="body"></textarea>
+    </div>
 
-  <!-- Tag Search and Multi-select -->
-  <div class="mb-3 position-relative" style="width: 100%;">
-    <label for="tagSearch">Tags</label>
-    <input type="text" id="tagSearch" class="form-control mb-2" placeholder="Search tags" [(ngModel)]="tagSearch"
-      [ngModelOptions]="{ standalone: true }" name="tagSearch" (input)="filterTags()" (focus)="onTagInputFocus()"
-      (blur)="onTagInputBlur()" autocomplete="off" />
+    <!-- Tag Search and Multi-select -->
+    <div class="mb-3 position-relative" style="width: 100%;">
+      <label for="tagSearch">Tags</label>
+      <input
+        type="text"
+        id="tagSearch"
+        class="form-control mb-2"
+        placeholder="Search or create tags"
+        [(ngModel)]="tagSearch"
+        [ngModelOptions]="{ standalone: true }"
+        name="tagSearch"
+        (input)="filterTags()"
+        (focus)="onTagInputFocus()"
+        (blur)="onTagInputBlur()"
+        (keydown.enter)="addTagOrCreate()"
+        autocomplete="off"
+      />
 
-    <div *ngIf="showTagDropdown && filteredTags.length > 0" class="border rounded bg-white"
-      style="max-height: 150px; overflow-y: auto; position: absolute; z-index: 1000; width: 100%;">
-      <div *ngFor="let tag of filteredTags" (mousedown)="addTag(tag.id)" style="padding: 5px 10px; cursor: pointer;">
-        {{ tag.tagName }}
+      <div *ngIf="showTagDropdown && filteredTags.length > 0"
+           class="border rounded bg-white"
+           style="max-height: 150px; overflow-y: auto; position: absolute; z-index: 1000; width: 100%;">
+        <div *ngFor="let tag of filteredTags"
+             (mousedown)="addTag(tag.id)"
+             style="padding: 5px 10px; cursor: pointer;">
+          {{ tag.tagName }}
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <strong>Selected:</strong>
+        <ng-container *ngFor="let id of selectedTagIds">
+          <span class="badge bg-primary me-1">
+            {{ getTagNameById(id) }}
+            <button type="button"
+                    class="btn-close btn-close-white btn-sm ms-1"
+                    aria-label="Remove"
+                    (click)="removeTag(id)">
+            </button>
+          </span>
+        </ng-container>
       </div>
     </div>
 
-    <div class="mt-2">
-      <strong>Selected:</strong>
-      <ng-container *ngFor="let id of selectedTagIds">
-        <span class="badge bg-primary me-1">
-          {{ getTagNameById(id) }}
-          <button type="button" class="btn-close btn-close-white btn-sm ms-1" aria-label="Remove"
-            (click)="removeTag(id)"></button>
-        </span>
-      </ng-container>
-    </div>
-  </div>
-
-  <button class="btn btn-primary" type="submit" [disabled]="postForm.invalid">Submit</button>
-</form>
+    <button class="btn btn-primary w-100" type="submit" [disabled]="postForm.invalid">Submit</button>
+  </form>
+</div>

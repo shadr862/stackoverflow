@@ -83,6 +83,35 @@ export class PostQuestionComponent implements OnInit {
     this.showTagDropdown = false;
   }
 
+  addTagOrCreate() {
+    const tagName = this.tagSearch.trim();
+
+    if (!tagName) return;
+
+    const existing = this.tags.find(t => t.tagName.toLowerCase() === tagName.toLowerCase());
+
+    if (existing) {
+      this.addTag(existing.id);
+      return;
+    }
+
+    const newTag = {
+      tagName: tagName,
+      tagDescription: `${tagName} related questions.`
+    };
+
+    this.service.createTag(newTag).subscribe({
+      next: (createdTag: TagDto) => {
+        this.tags.push(createdTag);
+        this.filteredTags.push(createdTag);
+        this.addTag(createdTag.id);
+      },
+      error: (err) => {
+        console.error('Tag creation failed:', err);
+      }
+    });
+  }
+
   removeTag(id: any) {
     this.selectedTagIds = this.selectedTagIds.filter(tagId => tagId !== id);
     this.postForm.patchValue({ tagIds: this.selectedTagIds });
@@ -109,6 +138,7 @@ export class PostQuestionComponent implements OnInit {
   onSubmit() {
     if (this.postForm.valid) {
       const rawValue = this.postForm.getRawValue();
+      alert(JSON.stringify(rawValue))
       this.service.createPost(rawValue).subscribe(() => {
         this.router.navigateByUrl('dashboard');
       });

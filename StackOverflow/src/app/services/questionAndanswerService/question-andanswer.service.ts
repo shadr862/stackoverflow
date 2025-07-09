@@ -23,7 +23,10 @@ export class QuestionAndanswerService {
     return this.refreshNeeded$.asObservable();
   }
 
-
+  createTag(tag:any)
+  {
+    return this.http.post<any>('https://localhost:44341/api/app/tag',tag); 
+  }
   getTags()
   {
     return this.http.get<any>('https://localhost:44341/api/app/tag');

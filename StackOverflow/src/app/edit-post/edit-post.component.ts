@@ -1,11 +1,9 @@
-import { J, R } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostType, TagDto } from '../post-question/post-question.model';
 import { QuestionAndanswerService } from '../services/questionAndanswerService/question-andanswer.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-edit-post',
@@ -17,10 +15,9 @@ export class EditPostComponent {
   postForm!: FormGroup;
   postTypes = PostType;
   tags: TagDto[] = [];
-  tagSearch: string = ''; // Plain variable, NOT part of form group
+  tagSearch: string = '';
   filteredTags: TagDto[] = [];
   selectedTagIds: any[] = [];
-  selectedTags: string[] = []
   showTagDropdown = false;
   postId!: string;
   question: any;
@@ -47,7 +44,6 @@ export class EditPostComponent {
 
     this.postId = this.activatedRoute.snapshot.paramMap.get('id')!;
 
-    // ✅ Step 1: Load tags
     this.service.getTags().subscribe((res: any) => {
       this.tags = res.items.map((tag: TagDto) => ({
         ...tag,
@@ -55,24 +51,21 @@ export class EditPostComponent {
       }));
       this.filteredTags = [...this.tags];
 
-      // ✅ Step 2: After tags are loaded, load question
       this.service.getQuestionById(this.postId).subscribe((data: any) => {
         this.question = data;
-        this.loaddata(); // ✅ Tags are guaranteed to be ready
+        this.loaddata();
       });
     });
   }
 
   loaddata() {
-    this.selectedTags = Array.isArray(this.question.tags) ? this.question.tags.map((tag: any) => tag.tagName) : [];
+    this.selectedTagIds = [];
 
-    
-    this.selectedTagIds = this.tags
-      .filter(tag => this.selectedTags.includes(tag.tagName))
-      .map(tag => tag.id);
-
-    
-
+    if (Array.isArray(this.question.tags)) {
+      this.selectedTagIds = this.tags
+        .filter(tag => this.question.tags.some((qt: any) => qt.tagName === tag.tagName))
+        .map(tag => tag.id);
+    }
 
     this.postForm.patchValue({
       appUserId: localStorage.getItem('userId'),
@@ -86,8 +79,7 @@ export class EditPostComponent {
       tagIds: this.selectedTagIds,
     });
 
-
-
+    this.filterTags();
   }
 
   filterTags() {
@@ -95,33 +87,61 @@ export class EditPostComponent {
     this.filteredTags = this.tags.filter(
       tag =>
         tag.tagName.toLowerCase().includes(filter) &&
-        !this.selectedTagIds.includes((tag.id))
+        !this.selectedTagIds.includes(tag.id)
     );
   }
 
   addTag(id: any) {
-
     if (!this.selectedTagIds.includes(id)) {
       this.selectedTagIds = [...this.selectedTagIds, id];
       this.postForm.patchValue({ tagIds: this.selectedTagIds });
+      this.postForm.get('tagIds')?.updateValueAndValidity();
       this.tagSearch = '';
       this.filterTags();
     }
-
     this.showTagDropdown = false;
+  }
+
+  addTagOrCreate(event?: Event) {
+    event?.preventDefault();
+
+    const tagName = this.tagSearch.trim();
+    if (!tagName) return;
+
+    const existing = this.tags.find(t => t.tagName.toLowerCase() === tagName.toLowerCase());
+    if (existing) {
+      this.addTag(existing.id);
+      return;
+    }
+
+    const newTag = {
+      tagName: tagName,
+      tagDescription: `${tagName} related questions.`
+    };
+
+    this.service.createTag(newTag).subscribe({
+      next: (createdTag: TagDto) => {
+        this.tags.push(createdTag);
+        this.filteredTags.push(createdTag);
+        this.addTag(createdTag.id);
+      },
+      error: (err) => {
+        console.error('Tag creation failed:', err);
+      }
+    });
   }
 
   removeTag(id: any) {
     this.selectedTagIds = this.selectedTagIds.filter(tagId => tagId !== id);
     this.postForm.patchValue({ tagIds: this.selectedTagIds });
+    this.postForm.get('tagIds')?.updateValueAndValidity();
     this.filterTags();
   }
 
   getTagNameById(id: any): string {
-    const tag = this.tags.find(t => (t.id) === id);
+    const tag = this.tags.find(t => t.id === id);
     return tag ? tag.tagName : '';
   }
-
 
   onTagInputFocus() {
     this.showTagDropdown = true;
@@ -137,10 +157,10 @@ export class EditPostComponent {
   onSubmit() {
     if (this.postForm.valid) {
       const rawValue = this.postForm.getRawValue();
+      console.log('Submitting edit:', rawValue);
       this.service.editQuestion(rawValue, this.postId).subscribe(() => {
         this.router.navigateByUrl('dashboard');
       });
     }
   }
-
 }
