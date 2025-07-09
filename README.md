@@ -13,7 +13,6 @@ A full-featured Q&A system inspired by Stack Overflow, built with Angular (front
 - ✅ **Tagging System** – Multi-select tag input with real-time search.
 - ✅ **Search & Filter** – Filter questions by tags and search through content.
 - ✅ **User Profiles** – Display user-related activity and contribution.
-- ✅ **Responsive UI** – Clean and mobile-friendly Angular components.
 
 ---
 
@@ -53,18 +52,23 @@ A full-featured Q&A system inspired by Stack Overflow, built with Angular (front
 ## 📷 UI Screenshots
 
 > *(Replace image URLs with your actual screenshots)*
+ **. Dashboard View**
+![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/dashboard.PNG)
 
-**1. Question View**
-![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/qa_module.png)
+**. Create Question View**
+![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/question.PNG)
 
-**2. Voting System**
-![Voting](https://github.com/shadr862/stackoverflow/blob/main/images/voting_system.png)
+**. Detail Question**
+![Voting](https://github.com/shadr862/stackoverflow/blob/main/images/detail_question.PNG)
 
-**3. Tag Filtering**
-![Tag Filtering](https://github.com/shadr862/stackoverflow/blob/main/images/tagging.png)
+**. Comments**
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/comment.PNG)
 
-**4. Comments**
-![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/comments.png)
+**.Post Answers**
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/post_answer.PNG)
+
+**.View Answers**
+![Comments](https://github.com/shadr862/stackoverflow/blob/main/images/all_answer.PNG)
 
 ---
 
