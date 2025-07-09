@@ -4,6 +4,8 @@
     style="cursor: pointer; text-decoration: none; color: inherit;"
     [routerLink]="['/dashboard/questionList/details', question.id]">
     <h5 class="fw-bold">{{ question.title }}</h5>
+    <!-- Post date here -->
+      <small class="text-muted">Posted on {{ question.created | date:'medium':'UTC+6'  }}</small>
     <p>{{ question.body }}</p>
 
     <div>
