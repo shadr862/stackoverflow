@@ -1,12 +1,6 @@
-
----
-
-## 💬 Stack Overflow Clone – `README.md`
-
-```markdown
 # 💬 Stack Overflow Clone (Q&A System)
 
-A fully functional Q&A platform inspired by Stack Overflow, developed using Angular and ASP.NET Core (ABP Framework). It allows users to ask questions, post answers, vote, comment, and tag content.
+A fully functional Q&A platform inspired by Stack Overflow, developed using Angular and ASP.NET Core (ABP Framework). It enables users to ask questions, post answers, vote, comment, and organize content with tags — all designed for easy navigation and community interaction.
 
 ---
 
@@ -14,53 +8,65 @@ A fully functional Q&A platform inspired by Stack Overflow, developed using Angu
 
 ![Q&A Preview](https://github.com/shadr862/stackoverflow/blob/main/images/stackclone.PNG)
 
-> Replace the link with your own preview screenshot.
+> Replace the above image link with your own screenshot for live demo or updates.
 
 ---
 
 ## 🔧 Features
 
 ### 🧑‍💻 Q&A Module
-- Ask questions and answer others
-- Accept answers to mark resolution
-- Tag-based filtering for easy navigation
+- Ask questions and provide answers
+- Mark accepted answers to resolve queries
+- Tag questions for easy discovery
+- Rich text support for question and answer bodies
 
 ### 📊 Voting System
-- Upvote and unvote both questions and answers
-- Vote counts reflect user community support
+- Upvote or remove vote on questions and answers
+- Vote counts update in real-time to reflect community feedback
 
 ### 🏷️ Tagging
-- Add tags when asking a question
-- Browse questions by tag
-- Multi-select dropdown with search
+- Add multiple tags to questions via a searchable multi-select dropdown
+- Browse and filter questions by tags
 
 ### 💬 Comments
-- Add comments to questions and answers
-- Nested comment threads for discussion
+- Comment on both questions and answers
+- Nested comment threads to foster discussions
+
+### 🔐 Authentication & Authorization
+- JWT-based secure login system
+- User roles with different access levels
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Angular, TypeScript
+- **Frontend**: Angular, TypeScript, RxJS, Bootstrap
 - **Backend**: ASP.NET Core, ABP Framework
-- **Database**: SQL Server
-- **Authentication**: JWT-based login
+- **Database**: SQL Server (Entity Framework Core)
+- **Authentication**: JWT with ASP.NET Identity
+- **API Documentation**: Swagger/OpenAPI
 
 ---
 
 ## 📂 Folder Structure
 
-- `api/` – Backend built with ASP.NET Core & ABP
-- `angular/` – Angular frontend
+- `api/` – Backend API with domain logic, controllers, and database migrations  
+- `angular/` – Angular frontend with components, services, and routing  
 
 ---
 
 ## 🚀 Getting Started
 
-> Requirements: Node.js, Angular CLI, .NET SDK, SQL Server
+### Prerequisites
+- Node.js (v14 or later)
+- Angular CLI
+- .NET SDK (6 or later)
+- SQL Server or compatible database
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/shadr862/stackoverflow.git
-cd stackoverflow
+### Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/shadr862/stackoverflow.git
+   cd stackoverflow
+ stackoverflow
