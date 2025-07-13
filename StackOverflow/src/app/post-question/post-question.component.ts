@@ -83,7 +83,8 @@ export class PostQuestionComponent implements OnInit {
     this.showTagDropdown = false;
   }
 
-  addTagOrCreate() {
+   addTagOrCreate(event?: Event) {
+    event?.preventDefault();
     const tagName = this.tagSearch.trim();
 
     if (!tagName) return;

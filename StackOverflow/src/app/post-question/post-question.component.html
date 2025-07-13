@@ -28,7 +28,7 @@
         (input)="filterTags()"
         (focus)="onTagInputFocus()"
         (blur)="onTagInputBlur()"
-        (keydown.enter)="addTagOrCreate()"
+        (keydown.enter)="addTagOrCreate($event)"
         autocomplete="off"
       />
 
