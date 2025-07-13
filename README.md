@@ -55,6 +55,9 @@ A full-featured Q&A system inspired by Stack Overflow, built with Angular (front
  **. Dashboard View**
 ![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/dashboard.PNG)
 
+ **. Profile View**
+![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/profile.PNG)
+
 **. Create Question View**
 ![Question View](https://github.com/shadr862/stackoverflow/blob/main/images/question.PNG)
 
